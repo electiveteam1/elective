@@ -1,0 +1,26 @@
+server:
+  port: 9009
+
+spring:
+  application:
+    name: workers-view
+  thymeleaf:
+    ###使页面校验轻松
+    mode: LEGACYHTML5
+    ###将页面缓存关闭
+    cache: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka
+#    register-with-eureka: false
+#    fetch-registry: false
+#ribbon:
+#  eureka:
+#    enabled: true
+
+#请求处理的超时时间
+ribbon:
+  ReadTimeout: 120000
+#请求连接的超时时间
+  ConnectTimeout: 30000

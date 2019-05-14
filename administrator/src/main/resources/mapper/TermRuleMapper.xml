@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.mapper.TermRuleMapper">
+    <resultMap id="BaseResultMap" type="cn.wisdsoft.pojo.TermRuleEntity">
+        <id column="term_rule_id" property="termRuleId" jdbcType="BIGINT"/>
+        <result column="term_id" property="termId" jdbcType="INTEGER"/>
+        <result column="cron" property="cron" jdbcType="VARCHAR"/>
+        <result column="term_rule_state" property="termRuleState" jdbcType="CHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        term_rule_id, term_id, cron, term_rule_state,
+        remark
+    </sql>
+    <!--<foreach collection="termRules" index="insex" item="tr" separator=",">-->
+    <!--(#{tr.termId},#{tr.timeCron},#{tr.ruleStatue})-->
+    <!--</foreach>-->
+    <insert id="insertTermRule">
+        insert into term_rule (term_id, cron, term_rule_state)
+        values
+        <foreach collection="termRules" index="index" separator="," item="termRules">
+            (#{termRules.termId}, #{termRules.cron}, #{termRuleState})
+        </foreach>
+    </insert>
+    <update id="updateTermRule" parameterType="cn.wisdsoft.pojo.TermRuleEntity">
+        UPDATE term_rule
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="cron =case" suffix="end,">
+                <foreach collection="termRuleEntity" item="info" index="index">
+                        when term_rule_id=#{info.termRuleId} then #{info.cron}
+                </foreach>
+            </trim>
+        </trim>
+    </update>
+    <update id="updateTermRuleStatus">
+        update term_rule set remark =1 where term_rule_id=#{termRuleId}
+    </update>
+    <select id="selectTermRule" resultType="cn.wisdsoft.pojo.TermRuleEntity">
+        select term_rule_id, term_id, cron, term_rule_state
+        from term_rule where remark =0
+    </select>
+</mapper>

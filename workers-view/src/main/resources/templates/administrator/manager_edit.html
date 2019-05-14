@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="x-body">
+    <div class="layui-form">
+        <div class="layui-form-item">
+            <label for="username" class="layui-form-label">
+                <span class="x-red">*</span>登录名
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="username" name="username" disabled autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                <span class="x-red">*</span>不可以修改用户名哦
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="oldPassword" class="layui-form-label">
+                <span class="x-red">*</span>旧密码
+            </label>
+            <div class="layui-input-inline">
+                <input type="password" id="oldPassword" name="oldPassword" required="" lay-verify="pass"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="newPassword1" class="layui-form-label">
+                <span class="x-red">*</span>新密码
+            </label>
+            <div class="layui-input-inline">
+                <input type="password" id="newPassword1" name="newPassword1" required="" lay-verify="repass"
+                       autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">
+                6到16个字符
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="newPassword" class="layui-form-label">
+                <span class="x-red">*</span>确认密码
+            </label>
+            <div class="layui-input-inline">
+                <input type="password" id="newPassword" name="newPassword" required="" lay-verify="repass"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="newPassword" class="layui-form-label">
+            </label>
+            <button class="layui-btn" id="updatePassword">
+                增加
+            </button>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['form', 'layer'], function () {
+        $ = layui.jquery;
+        var form = layui.form
+            , layer = layui.layer;
+        let teacherInfo = JSON.parse(sessionStorage.getItem("teacherInfo"));
+        console.log(teacherInfo)
+        $("#username").val(teacherInfo.teaName);
+        $(".x-body").on('click', "#updatePassword", function () {
+            let oldPassword = $("#oldPassword").val(),newPassword = $("#newPassword").val();
+            if(oldPassword==null||oldPassword==""){
+                layer.msg("原始密码不能为空");
+                return false;
+            }else if(newPassword==null||newPassword==""){
+                layer.msg("新密码不能为空");
+                return false;
+            }else if ($('#newPassword1').val() != $('#newPassword').val()) {
+                layer.msg("两次密码不一致");
+                return false;
+            }
+            $.ajax({
+                url: 'http://localhost:9009/updateTeacherPassword',
+                type: 'post',
+                data: {
+                    username: teacherInfo.workNumber,
+                    OldPassword: oldPassword,
+                    NewPassword: newPassword
+                },
+                success: function (res) {
+                    console.log(res);
+                    if(res.status==410){
+                        layer.msg(res.msg);
+                    }else if(res.status==200){
+                        layer.msg("修改成功,将重新登陆", {time:1500},function () {
+                            sessionStorage.clear();
+                            location.href = '/index'
+                        });
+                    }
+                    return false;
+                }, error: function () {
+                    layer.msg("修改密码失败");
+                }
+            })
+        });
+
+    });
+</script>
+</body>
+
+</html>

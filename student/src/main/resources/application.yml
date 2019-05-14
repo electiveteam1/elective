@@ -1,0 +1,67 @@
+server:
+  port: 9013
+  servlet:
+    context-path: /elective
+
+spring:
+  application:
+    name: student
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://www.liaoluo.top:3306/elective_system?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=true&testOnBorrow=true
+    username: mysqluser
+    password: mysqluser
+    druid:
+      filters: stat
+      max-active: 20
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+  ##redis配置
+  redis:
+    cache:
+      nodes: -192.168.6.185:7001
+        -192.168.6.185:7002
+        -192.168.6.185:7003
+        -192.168.6.194:7004
+        -192.168.6.194:7005
+        -192.168.6.194:7006
+      password:
+      maxIdle:
+      minIdle:
+      maxTotal:
+      maxWaitMillis: 5000
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+feign:
+  hystrix:
+    enabled: true
+
+#请求处理的超时时间
+ribbon:
+  ReadTimeout: 120000
+  #请求连接的超时时间
+  ConnectTimeout: 30000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+logging:
+  config: classpath:logback-spring.xml

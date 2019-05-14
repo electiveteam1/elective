@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.mapper.CourseLibraryMapper">
+    <resultMap id="BaseResultMap" type="cn.wisdsoft.pojo.CourseLibraryEntity">
+        <id column="course_library_id" property="courseLibraryId" jdbcType="BIGINT"/>
+        <result column="course_library_name" property="courseLibraryName" jdbcType="VARCHAR"/>
+        <result column="class_hour" property="classHour" jdbcType="SMALLINT"/>
+        <result column="credit" property="credit" jdbcType="SMALLINT"/>
+        <result column="college_name" property="collegeName" jdbcType="VARCHAR"/>
+        <result column="performance_rule_id" property="performanceRuleId" jdbcType="BIGINT"/>
+        <result column="course_group_name" property="courseGroupName" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        course_library_id, course_library_name, class_hour, credit, college_name, performance_rule_id, course_group_Name,
+        remark
+    </sql>
+    <insert id="insertCourseLibrary">
+        insert into course_library (course_library_name,
+                                    class_hour,
+                                    credit,
+                                    college_name,
+                                    performance_rule_id,
+                                    course_group_Name)
+        values (#{courseLibraryName}, #{classHour}, #{credit}, #{collegeName}, #{performanceRuleId}, #{courseGroupName})
+    </insert>
+    <select id="selectAllCourse" resultType="cn.wisdsoft.pojo.vo.CourseLibraryVo">
+        SELECT
+        cl.course_library_id,cl.credit,cl.class_hour,cl.course_library_name,cl.college_name,cl.performance_rule_id,cl.course_group_name,pr.performance_rule_id,pr.peacetime_performance_proportion,pr.mid_term_performance_proportion,pr.final_performance_proportion,pr.skill_assessment_proportion
+        FROM course_library AS cl
+        INNER JOIN performance_rule AS pr ON cl.performance_rule_id = pr.performance_rule_id
+        <where>
+            <if test="collegeName!=null">
+                cl.college_name=#{collegeName}
+            </if>
+            <if test="CourseName!=null">
+                and cl.course_library_name like concat(concat('%',#{CourseName},'%'))
+            </if>
+        </where>
+    </select>
+    <select id="selectByCourseId" resultType="cn.wisdsoft.pojo.CourseLibraryEntity">
+        select course_library_id, course_library_name, class_hour, credit, college_name, course_group_Name
+        from course_library
+        where course_library_id = #{courseId}
+    </select>
+    <select id="selectAllCourseGroup" resultType="cn.wisdsoft.pojo.CourseLibraryEntity">
+        select distinct course_group_Name
+        from course_library;
+    </select>
+</mapper>

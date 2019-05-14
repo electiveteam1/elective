@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.mapper.PerformanceMapper" >
+  <resultMap id="BaseResultMap" type="cn.wisdsoft.pojo.PerformanceEntity" >
+    <id column="performance_id" property="performanceId" jdbcType="BIGINT" />
+    <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="performance_rule_id" property="performanceRuleId" jdbcType="BIGINT" />
+    <result column="peacetim_performance" property="peacetimePerformance" jdbcType="INTEGER" />
+    <result column="mid_term_performance" property="midTermPerformance" jdbcType="INTEGER" />
+    <result column="final_performance" property="finalPerformance" jdbcType="INTEGER" />
+    <result column="skill_assessment" property="skillAssessment" jdbcType="INTEGER" />
+    <result column="total_score" property="totalScore" jdbcType="INTEGER" />
+    <result column="pass_flag" property="passFlag" jdbcType="SMALLINT" />
+    <result column="allow_flag" property="allowFlag" jdbcType="SMALLINT" />
+    <result column="term_id" property="termId" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    performance_id, student_id, performance_rule_id, peacetim_performance, mid_term_performance, 
+    final_performance, skill_assessment, total_score, pass_flag, allow_flag, term_id, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from performance
+    where performance_id = #{performanceId,jdbcType=BIGINT}
+  </select>
+    <select id="selectAllPerformance" resultType="cn.wisdsoft.pojo.vo.PerformanceEntityVo">
+      SELECT student.student_name,p.performance_id,p.student_id,
+      p.elective_course_id,p.performance_rule_id,p.peacetime_performance,p.mid_term_performance,
+      p.final_performance,p.skill_assessment,p.total_score,p.pass_flag,p.allow_flag,p.term_id
+      FROM performance AS p
+      INNER JOIN student ON p.student_id = student.student_id WHERE p.allow_flag = #{allowFlag}
+        <if test="collegeName!=null">
+          and student.college_name=#{collegeName}
+        </if>
+    </select>
+  <select id="selectPerformanceByIdOrName" resultType="cn.wisdsoft.pojo.vo.PerformanceEntityVo">
+    SELECT student.student_name,p.performance_id,p.student_id,
+    p.elective_course_id,p.performance_rule_id,p.peacetime_performance,p.mid_term_performance,
+    p.final_performance,p.skill_assessment,p.total_score,p.pass_flag,p.allow_flag,p.term_id
+    FROM performance AS p
+    INNER JOIN student ON p.student_id = student.student_id
+   <where>
+     <if test="1==1">
+       p.allow_flag = #{allowFlag}
+     </if>
+     <if test="studentId!=null">
+       and p.student_id like concat(concat('%',#{studentId},'%'))
+     </if>
+     <if test="studentName != null">
+       and student.student_name like concat(concat('%',#{studentName},'%'))
+     </if>
+     <if test="collegeName!=null">
+       and student.college_name = #{collegeName}
+     </if>
+   </where>
+  </select>
+  <select id="selectCoursePassRate" resultType="cn.wisdsoft.util.EchartsUtils">
+    SELECT
+    IF
+    ( total_score &lt; 60,'不及格', IF ( total_score BETWEEN 60 AND 80,' 良好','优秀') ) AS seriesName,
+    count(1) AS seriesData
+    FROM
+    performance where elective_course_id=#{courseId}
+    GROUP BY
+    IF
+    ( total_score &lt; 60,'不及格', IF ( total_score BETWEEN 60 AND 80,'良好','优秀' ) )
+
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from performance
+    where performance_id = #{performanceId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.wisdsoft.pojo.PerformanceEntity" >
+    insert into performance (performance_id, student_id, performance_rule_id, elective_course_id,
+      peacetime_performance, mid_term_performance,
+      final_performance, skill_assessment, total_score,
+      pass_flag, allow_flag, term_id, 
+      remark)
+    values (#{performanceId}, #{studentId}, #{performanceRuleId}, #{electiveCourseId},
+      #{peacetimePerformance,jdbcType=INTEGER}, #{midTermPerformance,jdbcType=INTEGER},
+      #{finalPerformance,jdbcType=INTEGER}, #{skillAssessment,jdbcType=INTEGER}, #{totalScore,jdbcType=INTEGER}, 
+      #{passFlag,jdbcType=SMALLINT}, #{allowFlag,jdbcType=SMALLINT}, #{termId,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wisdsoft.pojo.PerformanceEntity" >
+    insert into performance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="performanceId != null" >
+        performance_id,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="performanceRuleId != null" >
+        performance_rule_id,
+      </if>
+      <if test="peacetimPerformance != null" >
+        peacetim_performance,
+      </if>
+      <if test="midTermPerformance != null" >
+        mid_term_performance,
+      </if>
+      <if test="finalPerformance != null" >
+        final_performance,
+      </if>
+      <if test="skillAssessment != null" >
+        skill_assessment,
+      </if>
+      <if test="totalScore != null" >
+        total_score,
+      </if>
+      <if test="passFlag != null" >
+        pass_flag,
+      </if>
+      <if test="allowFlag != null" >
+        allow_flag,
+      </if>
+      <if test="termId != null" >
+        term_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="performanceId != null" >
+        #{performanceId,jdbcType=BIGINT},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="performanceRuleId != null" >
+        #{performanceRuleId,jdbcType=BIGINT},
+      </if>
+      <if test="peacetimPerformance != null" >
+        #{peacetimPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="midTermPerformance != null" >
+        #{midTermPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="finalPerformance != null" >
+        #{finalPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="skillAssessment != null" >
+        #{skillAssessment,jdbcType=INTEGER},
+      </if>
+      <if test="totalScore != null" >
+        #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="passFlag != null" >
+        #{passFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="allowFlag != null" >
+        #{allowFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="termId != null" >
+        #{termId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wisdsoft.pojo.PerformanceEntity" >
+    update performance
+    <set >
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="performanceRuleId != null" >
+        performance_rule_id = #{performanceRuleId,jdbcType=BIGINT},
+      </if>
+      <if test="peacetimPerformance != null" >
+        peacetim_performance = #{peacetimPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="midTermPerformance != null" >
+        mid_term_performance = #{midTermPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="finalPerformance != null" >
+        final_performance = #{finalPerformance,jdbcType=INTEGER},
+      </if>
+      <if test="skillAssessment != null" >
+        skill_assessment = #{skillAssessment,jdbcType=INTEGER},
+      </if>
+      <if test="totalScore != null" >
+        total_score = #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="passFlag != null" >
+        pass_flag = #{passFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="allowFlag != null" >
+        allow_flag = #{allowFlag,jdbcType=SMALLINT},
+      </if>
+      <if test="termId != null" >
+        term_id = #{termId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where performance_id = #{performanceId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wisdsoft.pojo.PerformanceEntity" >
+    update performance
+    set student_id = #{studentId,jdbcType=VARCHAR},
+      performance_rule_id = #{performanceRuleId,jdbcType=BIGINT},
+      peacetim_performance = #{peacetimPerformance,jdbcType=INTEGER},
+      mid_term_performance = #{midTermPerformance,jdbcType=INTEGER},
+      final_performance = #{finalPerformance,jdbcType=INTEGER},
+      skill_assessment = #{skillAssessment,jdbcType=INTEGER},
+      total_score = #{totalScore,jdbcType=INTEGER},
+      pass_flag = #{passFlag,jdbcType=SMALLINT},
+
+      term_id = #{termId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where performance_id = #{performanceId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByElectiveCourseId">
+    update performance p,performance_rule AS pr
+    set  p.allow_flag = #{allowFlag} where p.performance_rule_id=pr.performance_rule_id and p.elective_course_id=#{electiveCourseId}
+  </update>
+</mapper>

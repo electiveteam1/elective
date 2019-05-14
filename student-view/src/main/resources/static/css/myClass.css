@@ -1,0 +1,342 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑";
+
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.mater {
+    width: 100%;
+
+}
+
+
+.a-search {
+    width: 59.5%;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 auto;
+}
+
+.a-search input {
+    float: right;
+    border-radius: 1.5rem;
+    height: 25px;
+    width: 230px;
+    border: none;
+    border: 1px solid #666666;
+    margin-top: 15px;
+    padding-left: 10px;
+    outline: none;
+    background: url(../img/sousuo.png) no-repeat 95%;
+    background-size: 20px 20px;
+
+
+}
+
+.main-right {
+    width: 100%;
+    float: right;
+}
+
+.main-right img {
+    display: block;
+    width: 99%;
+}
+
+.location {
+    width: 99%;
+    height: 50px;
+    border-bottom: 1px solid #999999;
+}
+
+.location h4 {
+    color: #333333;
+    font-weight: normal;
+    border-left: 3px solid #0098CF;
+    padding-left: 10px;
+    float: left;
+}
+
+.location ul {
+    float: right;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.location ul li a:hover {
+    color: #0098CF;
+}
+
+.list {
+    width: 100%;
+}
+
+.list1 {
+    width: 99%;
+    height: 200px;
+    background: #edfafe;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+
+}
+
+.list1 img {
+    width: 170px;
+    height: 120px;
+    display: block;
+    margin-left: 1.2rem;
+}
+.list1 div{
+    margin-left: 2rem;
+}
+.intro h3 {
+    color: #0098CF;
+}
+
+.intro ul {
+    padding-left: 0;
+    color: #666;
+}
+
+.intro ul li {
+    margin-top: 5px;
+}
+
+.xuan img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+    margin: 0 auto;
+
+}
+
+.xuan {
+    display: flex;
+    justify-content: center;
+
+}
+
+.xuan span {
+    margin-left: 5px;
+}
+
+.xuan a:hover {
+    color: #0098CF;
+}
+
+.footer {
+    width: 100%;
+    height: 110px;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.footer ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer ul li {
+    color: white;
+    margin-right: 20px;
+}
+
+/*------------------------新的部分-----------------------*/
+#outer {
+    width: 62.5%;
+    margin: 0 auto;
+}
+
+#tab {
+    width: 20%;
+    float: left;
+    /*overflow: hidden;*/
+    zoom: 1;
+    height: 500px;
+    margin: 0 20px;
+}
+
+#tab li {
+    color: #000;
+    cursor: pointer;
+    width: 75%;
+    font-size: 18px;
+    /*text-align: center;*/
+    height: 35px;
+    margin-left: -10px;
+    padding-top: 6px;
+    margin-top: 10px;
+}
+
+#tab li.current {
+    background: #0098cf;
+    width: 90%;
+    color: #fff;
+    border-radius: 35px;
+    text-align: center;
+    margin-left: -20px;
+}
+
+#content {
+    width: 68%;
+    float: left;
+    height: auto;
+    margin-top: -76px;
+    border-left: 1px solid green;
+}
+
+#content header {
+    display: none;
+    height: auto;
+    margin-left: 10px;
+}
+
+.all {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.title {
+    margin-left: 20px;
+
+}
+
+.title li:nth-of-type(1) {
+    font-size: 32px;
+    color: #0198cf;
+}
+
+.title li:nth-of-type(2) {
+    font-size: 14px;
+    color: #666;
+    margin-left: 6px;
+
+}
+.tabTitle{
+    display: block;
+    padding: 10px 15px;
+    background-color: #e9f6ff;
+    border-left: 3px solid #26a9ff;
+    font-size: 18px;
+}
+.tabContent{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.tabContent label{
+    width: 33%;
+    margin: 5px 0;
+}
+#tab li{
+    margin-top: 20px;
+}
+.mybtnfilter{
+    text-align: center;
+}
+.filter{
+    width: 70%;
+    border: none;
+    background: #039eb7;
+    border-radius: 10px;
+    color: white;
+    height: 40px;
+    font-size: 18px;
+    line-height: 40px;
+}
+.pagination{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+}
+.pre{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #666666;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 28px;
+    margin-right: 10px;
+}
+.pre:hover{
+    color: #FFffff;
+    background: #039eb7;
+    border: 1px solid #FFffff;
+}
+.next{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #666666;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 28px;
+    margin: 0 10px;
+}
+.next:hover{
+    color: #FFffff;
+    background: #039eb7;
+    border: 1px solid #FFffff;
+}
+.pageNums.active{
+    color: #FFffff;
+    background: #039eb7;
+    border: 1px solid #FFffff;
+}
+.page{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+}
+.page div{
+    /*display: block;*/
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #666666;
+    cursor: pointer;
+    line-height: 30px;
+    margin: 0 5px;
+}
+.page div:hover{
+    color: #FFffff;
+    background: #039eb7;
+    border: 1px solid #FFffff;
+}

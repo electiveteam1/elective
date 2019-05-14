@@ -1,0 +1,29 @@
+<div class="top">
+    <div class="top-left">
+        <div>河北工程技术学院学生选课系统</div>
+    </div>
+    <div class="top-right">
+        <ul>
+            <li id="college">软件学院</li>
+            <li id="stuName">杨扬样</li>
+            <li><img src="img/701.png"/></li>
+            <li><a style="cursor: pointer" id="logout">退出</a></li>
+            <li><a href="#">注册</a></li>
+        </ul>
+    </div>
+</div>
+<!--<script src="js/jquery-2.1.0.js"></script>-->
+<script>
+    let userInfoString = sessionStorage.getItem("user");
+    if (userInfoString == null || userInfoString === '') {
+        alert("请登录");
+        location.href = "login.html";
+    }
+    let userInfo = JSON.parse(userInfoString);
+    $("#college").text(userInfo.college);
+    $("#stuName").text(userInfo.name);
+    $("#logout").click(function () {
+        sessionStorage.clear();
+        location.href = "login.html";
+    });
+</script>

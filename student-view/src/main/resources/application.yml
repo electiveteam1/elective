@@ -1,0 +1,35 @@
+server:
+  port: 9008
+
+spring:
+  application:
+    name: student-view
+  thymeleaf:
+    ###使页面校验轻松
+    mode: LEGACYHTML5
+    ###将页面缓存关闭
+    cache: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka
+feign:
+  hystrix:
+    enabled: true
+
+#请求处理的超时时间
+ribbon:
+  ReadTimeout: 120000
+  #请求连接的超时时间
+  ConnectTimeout: 30000
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+logging:
+  config: classpath:logback-spring.xml

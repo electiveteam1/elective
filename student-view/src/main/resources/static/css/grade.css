@@ -1,0 +1,289 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "微软雅黑";
+
+}
+
+li {
+    list-style: none;
+
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+}
+
+.mater {
+    width: 100%;
+
+}
+
+.top {
+    background: url(../img/shouye_02.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.top-left {
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.top-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.top-right ul {
+    width: 300px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.top-right li {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 10px;
+
+
+}
+
+.top-right img {
+    width: 45px;
+    height: 45px;
+
+}
+
+.inpu {
+
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+
+}
+
+.inpu input {
+    border-radius: 1.5rem;
+    height: 20px;
+    width: 330px;
+    border: none;
+    border: 1px solid #666666;
+    padding: 0.5rem;
+    margin: 20px;
+
+}
+
+.main {
+    width: 62.5%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.main-left {
+    width: 25%;
+
+    border-right: 1px solid #A9A9A9;
+    float: left;
+}
+
+.main-left ul {
+    width: 100%;
+    padding-left: 0;
+}
+
+.main-left ul li {
+    text-align: center;
+
+    line-height: 50px;
+
+}
+
+.main-left ul li:nth-of-type(2) {
+    margin-top: 10px;
+}
+
+.main-left ul li:nth-of-type(1) span {
+    color: #0098cf;
+    font-size: 34px;
+
+
+}
+
+.main-left ul li:nth-of-type(2) {
+    margin-top: -25px;
+}
+
+.main-left ul li:nth-of-type(2) span {
+    color: #333333;
+    font-size: 16px;
+    font-family: "Candara";
+    margin-top: -50px;
+
+}
+
+.main-left ul li:nth-of-type(3) {
+    font-size: 18px;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+
+}
+
+.my {
+    width: 72%;
+    height: 44px;
+!important;
+    background-color: #0198cf;
+    border-radius: 25px;
+    margin-left: 30px;
+    margin-top: 20px;
+    color: white;
+}
+
+.main-left ul li:nth-of-type(4) {
+    font-size: 20px;
+}
+
+.main-left ul li:nth-of-type(5) {
+    font-size: 20px;
+}
+
+.main-right {
+    width: 74%;
+    float: right;
+}
+
+.main-right img {
+    display: block;
+    width: 99%;
+}
+
+.location {
+    width: 99%;
+    height: 50px;
+    border-bottom: 1px solid #999999;
+
+}
+
+.location h4 {
+    color: #333333;
+    font-weight: normal;
+    border-left: 3px solid #0098CF;
+    padding-left: 10px;
+    float: left;
+}
+
+.location ul {
+    float: right;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.search {
+    width: 100%;
+}
+
+.search ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -35px;
+}
+
+.filter1 {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.search ul select {
+    width: 80%;
+    height: 40px;
+    background: #edfafe;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+    letter-spacing: 3px;
+    padding-left: 20px;
+    outline: none;
+}
+
+.search ul button {
+    width: 90px;
+    height: 35px;
+    background: #0098CF;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.cheng {
+    width: 99%;
+    word-wrap: break-word;
+    margin-top: 30px;
+
+}
+
+.cheng table {
+    width: 99%;
+    border: 1.5px solid #0098CF;
+
+}
+
+.cheng table tr {
+    width: 20%;
+    border-bottom: 1px solid #A9A9A9;
+    border-right: 1px solid #A9A9A9;
+}
+
+.cheng table td {
+    border-right: 1px solid #A9A9A9;
+    border-bottom: 1px solid #A9A9A9;
+    text-align: center;
+}
+
+.cheng table th {
+    background-color: #edfbfe;
+    text-align: center;
+    border-bottom: 1px solid #A9A9A9;
+    border-right: 1px solid #A9A9A9;
+}
+
+.footer {
+    width: 100%;
+    height: 90px;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+}
+
+.footer ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer ul li {
+    color: white;
+    margin-right: 20px;
+}
+

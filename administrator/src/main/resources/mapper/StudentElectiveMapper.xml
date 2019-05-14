@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.mapper.StudentElectiveMapper" >
+  <resultMap id="BaseResultMap" type="cn.wisdsoft.pojo.StudentElectiveEntity" >
+    <id column="student_elective_id" property="studentElectiveId" jdbcType="BIGINT" />
+    <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="elective_course_id" property="electiveCourseId" jdbcType="BIGINT" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="course_flag" property="courseFlag" jdbcType="CHAR" />
+    <result column="time_stamp" property="timeStamp" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    student_elective_id, student_id, elective_course_id, student_name, course_flag, time_stamp, 
+    remark
+  </sql>
+    <update id="updateLearningStatus">
+      update student_elective set course_flag=#{courseFlag}
+    </update>
+    <delete id="deleteAllStuElective">
+    delete  from student_elective where elective_course_id=#{electiveCourseId}
+  </delete>
+</mapper>

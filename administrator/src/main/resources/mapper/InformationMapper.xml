@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.mapper.InformationMapper" >
+  <resultMap id="BaseResultMap" type="cn.wisdsoft.pojo.InformationEntity" >
+    <id column="information_id" property="informationId" jdbcType="BIGINT" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+    <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="student_name" property="studentName" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="information_date" property="informationDate" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    information_id, teacher_id, teacher_name, student_id, student_name, course_name, 
+    information_date, remark
+  </sql>
+  <insert id="insertInformationOnStu">
+    insert into information(teacher_id, teacher_name, student_id, student_name, course_name,
+    information_date)
+    values
+    <foreach collection="list" index="index" separator="," item="info">
+      (#{info.teacherId},#{info.teacherName},#{info.studentId},#{info.studentName},#{info.courseName},now())
+    </foreach>
+  </insert>
+
+  <!--<update id="updateByPrimaryKey" parameterType="cn.wisdsoft.courseSelection.entity.Information" >-->
+    <!--update information-->
+    <!--set teacher_id = #{teacherId,jdbcType=VARCHAR},-->
+      <!--teacher_name = #{teacherName,jdbcType=VARCHAR},-->
+      <!--student_id = #{studentId,jdbcType=VARCHAR},-->
+      <!--student_name = #{studentName,jdbcType=VARCHAR},-->
+      <!--course_name = #{courseName,jdbcType=VARCHAR},-->
+      <!--information_date = #{informationDate,jdbcType=TIMESTAMP},-->
+      <!--remark = #{remark,jdbcType=VARCHAR}-->
+    <!--where information_id = #{informationId,jdbcType=BIGINT}-->
+  <!--</update>-->
+</mapper>

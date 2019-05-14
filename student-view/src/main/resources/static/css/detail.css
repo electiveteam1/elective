@@ -1,0 +1,122 @@
+.top_d{
+    width: 100%;
+}
+.tacherInfo{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start
+}
+.top_d img{
+    display: block;
+    width: 18%;
+    height: 200px;
+}
+.item:nth-of-type(3){
+    margin-top: 20px;
+}
+.item:nth-of-type(4){
+    margin-top: 20px;
+}
+.item:nth-of-type(5){
+    margin-top: 20px;
+}
+.t_detail{
+    width: 80%;
+    /* height: 200px; */
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start
+}
+.t_detail div{
+    width: 50%;
+}
+.bottom_d{
+    width: 100%;
+}
+.c_detail{
+    float: right;
+    width: 90%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+.c_detail div{
+    width: 50%;
+}
+.t_item{
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start
+}
+.courseInfo{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start
+}
+.courseInfo .list{
+    width: 20%;
+    border-right: 1px solid #666;
+    margin-right: 10px;
+}
+.courseInfo .list span{
+    display: block;
+    font-size: 18px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center
+}
+.list span.selected{
+    background: #e9f6ff;
+    border-left: 3px solid #26a9ff;
+}
+.courseInfo .content{
+    width:80%;
+
+}
+.content>div{
+display: none;
+}
+.content>div.active{display:block;}
+.courseDatail{
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-flow: row wrap;
+   font-size: 16px;
+	
+}
+.courseDatail li{
+	width: 33%;
+
+}
+.location ul li a:hover{
+    color: #0098cf;
+}
+.courseDatail1{
+    width: 100%;
+	display: flex;
+    justify-content: flex-start;
+	flex-flow: row wrap;
+   font-size: 16px;
+}
+.courseDatail1 li{
+    width: 50%;
+    margin-bottom: 10px;
+
+}
+.btn{
+    border: none;
+    width: 72%;
+    height: 44px;
+    background-color: #0198cf;
+    border-radius: 25px;
+    margin-left: 30px;
+    margin-top: 20px;
+    color: white;
+    box-shadow: 5px 5px 5px #666666;
+    font-size: 18px;
+}

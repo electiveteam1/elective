@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.mapper.PerformanceRuleMapper" >
+  <resultMap id="BaseResultMap" type="cn.wisdsoft.pojo.PerformanceRuleEntity" >
+    <id column="performance_rule_id" property="performanceRuleId" jdbcType="BIGINT" />
+    <result column="peacetime_performance_proportion" property="peacetimePerformanceProportion" jdbcType="INTEGER" />
+    <result column="mid_term_performance_proportion" property="midTermPerformanceProportion" jdbcType="INTEGER" />
+    <result column="final_performance_proportion" property="finalPerformanceProportion" jdbcType="INTEGER" />
+    <result column="skill_assessment_proportion" property="skillAssessmentProportion" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    performance_rule_id, peacetime_performance_proportion, mid_term_performance_proportion, 
+    final_performance_proportion, skill_assessment_proportion, remark
+  </sql>
+  <insert id="insertPerformanceRule" parameterType="cn.wisdsoft.pojo.PerformanceRuleEntity">
+    <selectKey resultType="long" order="AFTER" keyProperty="performanceRuleId">
+      SELECT LAST_INSERT_ID() AS performanceRuleId
+    </selectKey>
+    insert into performance_rule(peacetime_performance_proportion, mid_term_performance_proportion,
+    final_performance_proportion, skill_assessment_proportion)
+    values (#{peacetimePerformanceProportion}, #{midTermPerformanceProportion}, #{finalPerformanceProportion},
+    #{skillAssessmentProportion})
+  </insert>
+</mapper>

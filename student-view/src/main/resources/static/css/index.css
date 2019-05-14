@@ -1,0 +1,277 @@
+body{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+	
+}
+li{
+	list-style: none;
+	
+}
+a{
+	text-decoration: none;
+	color: #333333;
+}
+.mater{
+	width: 100%;
+
+}
+.header{
+	width: 100%;
+	background:url(../img/shouye_02.png) no-repeat;
+	background-size: 100% 100%;
+}
+.top{
+	width: 62.5%;
+	margin: 0 auto;	
+}
+.top-left{
+	position: absolute;
+	margin-left: 15px;
+	margin-top: 10px;
+}
+.top-left div{
+	font-size: 24px;
+	margin-top: 7px;
+}
+.top-right{
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 14px;
+}
+.top-right ul{
+	width: 300px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+.top-right li{
+	list-style: none;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-right: 10px;
+
+	
+}
+.top-right img{
+	width: 32px;
+	height: 32px;
+	
+}
+.banner {
+	
+	width: 100%;
+}
+.banner img{
+	width: 100%;
+	
+}
+.mid{
+	width: 62.5%;
+	height: 90px;
+	display: flex;
+	justify-content:flex-start;
+	align-items: center;
+	margin: 0 auto;
+}
+.mid ul{
+	width: 1200px;
+	display: flex;
+	flex-flow: row wrap;
+	
+}
+.mid li{
+	display: flex;
+	/*justify-content: space-around;*/
+	align-items: center;
+	margin-right: 10px;
+}
+.mid li img{
+	width: 40px;
+	height: 40px;
+}
+.mid ul li:nth-of-type(3){
+	margin-right: 100px;
+	color: #14217b;
+}
+.mid ul li:nth-of-type(6){
+	color: #14217b;
+} 
+
+.select{
+	width: 100%;
+	background: url(../img/shouye_05.png) no-repeat;
+	background-size: 100% 100%;
+	height: 650px;
+}
+.select h2{
+	width: 100%;
+	height: 60px;
+/*	position: absolute;*/
+	color: white;	
+	text-align: center;
+	line-height: 70px;	
+}
+
+.sel{
+	width: 62.5%;
+	height: 300px;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: center;
+	margin: 100px auto;
+
+}
+
+.select1{
+	width: 30%;
+	height: 430px;
+	margin-top: 75px;
+	border-radius: 10px;
+	/*display: flex;
+	justify-content: center;*/
+	
+	
+	
+}
+.select1:nth-of-type(1){
+	background-color: #40b88b;
+	
+
+	
+}
+.select1:nth-of-type(2){
+	background-color: #4a8bc4;
+	
+	
+}
+.select1:nth-of-type(3){
+	background-color: #915fb9;
+	
+	
+}
+.select1 ul{
+	width: 62%;
+	display: block;
+	margin: 0 auto;	
+}
+.select1 ul li:nth-of-type(1){
+	margin: 0 auto;
+	margin-top: 15px;
+	width: 100px;
+	height: 90px;	
+}
+.select1 ul li:nth-of-type(2){
+	width: 80%;
+	display: block;
+/*	margin: 0 auto;*/
+	color: white;
+	text-align: center;
+}
+.select1 ul li:nth-of-type(3){
+	width: 80%;
+	text-align: center;
+	color: white;
+	margin-top: 50px;
+}
+.select1 ul li:nth-of-type(4) button{
+	width: 80%;
+	height: 30px;
+	border: none;
+	background-color:#fff ;
+	color: #555;
+	border-radius: 30px;
+	margin: 0 auto;
+	margin-top: 80px;
+	outline: none;
+	
+}
+.select1 ul li img{
+	width: 70%;
+	height: 70%;
+	
+}
+.recom{
+	width: 100%;
+	margin: 0 auto;
+	height: 300px;
+}
+.recom h2{
+	width: 100%;
+	text-align: center;
+}
+.my{
+	width: 17rem;
+	height: 10rem;
+	color: white;
+	line-height: 10rem;
+	font-size: 24px;
+	box-shadow: 5px 5px 5px #666666;
+	border-radius: 10px;
+}
+.footer{
+	width: 100%;
+	height: 110px;
+	background: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	bottom: 0;
+	z-index: 100;
+}
+.footer ul{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.footer ul li{
+	color: white;
+	margin-right: 20px;
+}
+/*--------------------swiper----------------------*/
+ .swiper-container {
+      width: 80%;
+      height: 70%;
+    }
+    .swiper-slide {
+    	width: 100%;
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+
+      margin-left: -1px;
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+      font-size: 18px;
+    }
+    .swiper-slide ul li img{
+    	display: block;
+    	width: 100%;
+    	height: 70%;	
+    	margin-left: -10px;
+    	padding-bottom: 10px;
+    
+    }
+        .swiper-slide ul{
+        /*	border: 1px solid red;*/
+        	text-align: center;
+        	
+        }

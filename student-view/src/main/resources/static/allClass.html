@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="css/allClass.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <style>
+        /* 外面盒子样式---自己定义 */
+        .page_div{margin:20px 10px 20px 0;color:#666}
+        /* 页数按钮样式 */
+        .page_div button{display:inline-block;min-width:30px;height:28px;cursor:pointer;color:#666;font-size:13px;line-height:28px;background-color:#f9f9f9;border:1px solid #dce0e0;text-align:center;margin:0 4px;-webkit-appearance: none;-moz-appearance: none;appearance: none;}
+        #firstPage,#lastPage,#nextPage,#prePage{width:50px;color:#0073A9;border:1px solid #0073A9}
+        #nextPage,#prePage{width:70px}
+        .page_div .current{background-color:#0073A9;border-color:#0073A9;color:#FFF}
+        /* 页面数量 */
+        .totalPages{margin:0 10px}
+        .totalPages span,.totalSize span{color:#0073A9;margin:0 5px}
+        /*button禁用*/
+        .page_div button:disabled{opacity:.5;cursor:no-drop}
+    </style>
+</head>
+
+<body>
+<div class="mater">
+    <div class="header">
+<!--        <div class="top">-->
+<!--            <div class="top-left">-->
+<!--                <div>河北工程技术学院学生选课系统</div>-->
+<!--            </div>-->
+<!--            <div class="top-right">-->
+<!--                <ul>-->
+<!--                    <li>软件学院</li>-->
+<!--                    <li>杨扬样</li>-->
+<!--                    <li><img src="img/701.png"/></li>-->
+<!--                    <li><a href="#">退出</a></li>-->
+<!--                    <li><a href="#">注册</a></li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+<!--    <div class="a-search">-->
+<!--        <input type="text" id="" value="" placeholder="请输入你的搜索内容"/>-->
+<!--        &lt;!&ndash;<img src="img/sousuo.png"/>&ndash;&gt;-->
+<!--    </div>-->
+    <div class="all">
+        <div id="outer">
+            <ul class="title">
+                <li>课程选择</li>
+                <li>COURE CHOOSE</li>
+            </ul>
+            <ul id="tab">
+                <li class="mycategory">
+                </li>
+                <li class="mycapacity">
+                </li>
+                <li class="myweek">
+                </li>
+                <li class="mytimes">
+                </li>
+                <li class="mybtnfilter"  style="padding-bottom: 150px"><button class="filter">筛选</button></li>
+            </ul>
+            <div id="content">
+                <header style="display:block;">
+                    <div class="main-right">
+                        <div class="banner">
+                            <img src="img/4e.jpg"/>
+
+                        </div>
+                        <div class="location">
+                            <h4>位置</h4>
+                            <ul>
+                                <li><a href="index.html">首页</a><span>></span></li>
+                                <li><a href="allClass.html">课程选择</a><span>></span></li>
+                                <li><a href="allClass.html">全部课程</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="list">
+
+                        </div>
+                    </div>
+                    <div id="page" class="page_div" style="padding-bottom: 100px;">
+<!--                        //分页-->
+                    </div>
+                </header>
+                <header>
+                    <div class="main-right">
+                        <div class="banner">
+                            <img src="img/4e.jpg"/>
+
+                        </div>
+                        <div class="location">
+                            <h4>位置</h4>
+                            <ul>
+                                <li><a href="index.html">首页</a><span>></span></li>
+                                <li><a href="allClass.html">课程选择</a><span>></span></li>
+                                <li><a href="allClass.html">校选课</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="list">
+                            <div class="list1">
+                                <img src="img/shouye_08.png"/>
+                                <div class="intro">
+                                    <h3>JAVA程序基础</h3>
+                                    <ul>
+                                        <li>任课教师：孙伟光 &nbsp;&nbsp;&nbsp;&nbsp;课程类型：校选课</li>
+                                        <li>上课时间： 每周二上午一二节</li>
+                                        <li>上课地点：次教104 &nbsp;&nbsp;&nbsp;&nbsp;学分：2.0</li>
+                                        <li>容量：</li>
+                                    </ul>
+
+                                </div>
+                                <div class="xuan">
+                                    <a><img src="img/xuanze (1).png"/>
+                                        <span>选择课程</span>
+                                    </a>
+                                </div>
+                                <div class="xuan">
+                                    <a href="detaile.html"><img src="img/xiangqing.png"/>
+                                        <span>详情</span>
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </header>
+                <header>
+                    <div class="main-right">
+                        <div class="banner">
+                            <img src="img/4e.jpg"/>
+
+                        </div>
+                        <div class="location">
+                            <h4>位置</h4>
+                            <ul>
+                                <li><a href="index.html">首页</a><span>></span></li>
+                                <li><a href="allClass.html">课程选择</a><span>></span></li>
+                                <li><a href="allClass.html">院选课</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="list">
+                            <div class="list1">
+                                <img src="img/shouye_08.png"/>
+                                <div class="intro">
+                                    <h3>JAVA程序基础</h3>
+                                    <ul>
+                                        <li>任课教师：孙伟光 &nbsp;&nbsp;&nbsp;&nbsp;课程类型：校选课</li>
+                                        <li>上课时间： 每周二上午一二节</li>
+                                        <li>上课地点：次教104 &nbsp;&nbsp;&nbsp;&nbsp;学分：2.0</li>
+                                        <li>容量：</li>
+                                    </ul>
+
+                                </div>
+                                <div class="xuan">
+                                    <a><img src="img/xuanze (1).png"/>
+                                        <span>选择课程</span>
+                                    </a>
+                                </div>
+                                <div class="xuan">
+                                    <a href="detaile.html"><img src="img/xiangqing.png"/>
+                                        <span>详情</span>
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+    <div class="footer">
+        <ul>
+            <li>© 河北工程技术学院</li>
+            <li>技术支持：软件学院-智软工作室www.wisdsoft.cn</li>
+        </ul>
+    </div>
+
+
+</div>
+</body>
+
+</html>
+<script src="js/jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/allClass.js" type="module"></script>
+<script src="js/util/pageMe.js"></script>

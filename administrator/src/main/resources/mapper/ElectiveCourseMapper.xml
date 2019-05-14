@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wisdsoft.mapper.ElectiveCourseMapper">
+    <resultMap id="BaseResultMap" type="cn.wisdsoft.pojo.ElectiveCourseEntity">
+        <id column="elective_course_id" property="electiveCourseId" jdbcType="BIGINT"/>
+        <result column="course_library_id" property="courseLibraryId" jdbcType="BIGINT"/>
+        <result column="course_library_name" property="courseLibraryName" jdbcType="VARCHAR"/>
+        <result column="courseGroupName" property="courseGroupName" jdbcType="BIGINT"/>
+        <result column="teacher_id" property="teacherId" jdbcType="VARCHAR"/>
+        <result column="teacher_name" property="teacherName" jdbcType="VARCHAR"/>
+        <result column="time_and_place" property="timeAndPlace" jdbcType="VARCHAR"/>
+        <result column="restricted_grade" property="restrictedGrade" jdbcType="VARCHAR"/>
+        <result column="max_number" property="maxNumber" jdbcType="INTEGER"/>
+        <result column="min_number" property="minNumber" jdbcType="INTEGER"/>
+        <result column="class_hour" property="classHour" jdbcType="INTEGER"/>
+        <result column="credit" property="credit" jdbcType="INTEGER"/>
+        <result column="current_number" property="currentNumber" jdbcType="INTEGER"/>
+        <result column="term_id" property="termId" jdbcType="INTEGER"/>
+        <result column="college_name" property="collegeName" jdbcType="VARCHAR"/>
+        <result column="priority" property="priority" jdbcType="INTEGER"/>
+        <result column="elective_course_status" property="electiveCourseStatus" javaType="INTEGER"/>
+        <result column="delete_flag" property="deleteFlag" jdbcType="CHAR"/>
+        <result column="option_flag" property="optionFlag" javaType="INTEGER"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        elective_course_id, course_library_id, course_library_name, course_group_name, teacher_id,
+        teacher_name, time_json, locations_json, restricted_grade, max_number, min_number,
+        class_hour, credit, current_number, term_id, college_name, priority, elective_course_status, delete_flag, option_flag,
+        remark
+    </sql>
+    <insert id="insertCourse" parameterType="cn.wisdsoft.pojo.ElectiveCourseEntity">
+        insert into elective_course (course_library_id,
+        course_library_name, course_group_name, teacher_id,
+        teacher_name, time_and_place,
+        restricted_grade, max_number, min_number,
+        class_hour, credit, current_number,
+        term_id, college_name, priority,elective_course_status,
+        delete_flag, remark, course_library_introduction,option_flag
+        )
+        values
+        <foreach collection="electiveCourse" index="index" separator="," item="info">
+            (#{info.courseLibraryId}, #{info.courseLibraryName}, #{info.courseGroupName}, #{info.teacherId},
+            #{info.teacherName}, #{info.timeAndPlace},
+            #{info.restrictedGrade}, #{info.maxNumber}, #{info.minNumber},
+            #{info.classHour}, #{info.credit}, #{info.currentNumber},#{info.termId}, #{info.collegeName},
+            #{info.priority},#{info.electiveCourseStatus},
+            #{info.deleteFlag}, #{info.remark}, #{info.courseLibraryIntroduction},#{info.optionFlag}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateElectiveCourseStatus" parameterType="cn.wisdsoft.pojo.ElectiveCourseEntity">
+        update elective_course
+        set elective_course_status = #{electiveCourseStatus}
+        where elective_course_id = #{electiveCourseId}
+    </update>
+    <delete id="deleteByPrimaryKey">
+        update elective_course
+        set delete_flag = #{deleteFlag}
+        where elective_course_id = #{electiveCourseId}
+    </delete>
+    <select id="SelectCourseName" resultType="cn.wisdsoft.pojo.ElectiveCourseEntity">
+        select elective_course_id, course_library_name, teacher_name
+        from elective_course
+        where college_name = #{CollegeName}
+    </select>
+
+    <select id="selectStuByCourseId" resultType="cn.wisdsoft.pojo.InformationEntity">
+        SELECT ec.teacher_id, ec.teacher_name, ec.course_library_name as courseName, se.student_id, se.student_name
+        FROM student_elective AS se
+                 INNER JOIN elective_course AS ec ON se.elective_course_id = ec.elective_course_id
+        where ec.elective_course_id = #{electiveCourseId}
+    </select>
+    <select id="selectAllElectiveCourseInfo" resultType="cn.wisdsoft.pojo.ElectiveCourseEntity">
+        SELECT e.elective_course_id,
+               e.course_library_id,
+               e.course_library_name,
+               e.teacher_id,
+               e.teacher_name,
+               e.time_and_place,
+               e.restricted_grade,
+               e.max_number,
+               e.min_number,
+               e.class_hour,
+               e.credit,
+               e.course_library_introduction,
+               e.current_number,
+               e.term_id,
+               e.college_name,
+               e.priority,
+               e.elective_course_status,
+               e.delete_flag,
+               e.option_flag,
+               e.remark
+        FROM elective_course AS e
+        where delete_flag = 0
+          and e.college_name = #{collegeName}
+    </select>
+    <select id="selectAllElectiveCourseByCourseOrTeaName" resultType="cn.wisdsoft.pojo.ElectiveCourseEntity">
+        SELECT
+        e.elective_course_id,e.course_library_id,e.course_library_name,
+        e.teacher_id,e.teacher_name,e.time_and_place,e.restricted_grade,
+        e.max_number,e.min_number,e.class_hour,e.credit,e.course_library_introduction,e.current_number,e.term_id,e.college_name,e.priority,e.elective_course_status,e.delete_flag,e.option_flag,e.remark
+        FROM elective_course AS e where delete_flag=0 and e.college_name=#{collegeName}
+        <if test="TeacherName!=null">
+            and e.teacher_name like concat('%',#{TeacherName},'%')
+        </if>
+        <if test="CourseName!=null">
+            and e.course_library_name like concat('%',#{CourseName},'%')
+        </if>
+    </select>
+    <select id="selectElectiveByStatus" resultType="cn.wisdsoft.pojo.ElectiveCourseEntity">
+        SELECT e.elective_course_id,
+               e.course_library_id,
+               e.course_library_name,
+               e.teacher_id,
+               e.teacher_name,
+               e.time_and_place,
+               e.restricted_grade,
+               e.max_number,
+               e.min_number,
+               e.class_hour,
+               e.credit,
+               e.course_library_introduction,
+               e.current_number,
+               e.term_id,
+               e.college_name,
+               e.priority,
+               e.elective_course_status,
+               e.delete_flag,
+               e.option_flag,
+               e.remark
+        FROM elective_course AS e
+        where delete_flag = 0
+          and elective_course_status = #{electiveCourseStatus}
+          and e.college_name = #{collegeName}
+    </select>
+
+    <select id="selectCurrentNumberByCourseLibraryName" resultType="cn.wisdsoft.pojo.vo.CourseSummaryVo">
+        SELECT t.term_name, e.course_library_name, sum(e.current_number) as current_number
+        FROM elective_course AS e,
+             term AS t
+        WHERE e.term_id = t.term_id
+          AND e.course_library_name = #{courseLibraryName}
+    </select>
+
+    <select id="selectCurrentNumberByTermId" resultType="cn.wisdsoft.pojo.vo.CourseSummaryVo">
+        SELECT term_id as term_id, course_library_name as course_library_name, sum(current_number) as current_number
+        FROM elective_course
+        WHERE term_id = #{termId}
+        GROUP BY course_library_name
+    </select>
+
+    <select id="selectTeacherSdNumberByTermId" resultType="cn.wisdsoft.pojo.vo.CourseSummaryVo">
+        SELECT teacher_name,
+               GROUP_CONCAT(course_library_name) AS courseLibraryName,
+               GROUP_CONCAT(current_number)      AS teacherId
+        FROM elective_course
+        WHERE term_id = #{termId}
+          and college_name = #{collegeName}
+        GROUP BY teacher_name
+
+    </select>
+
+    <select id="selectTeaAllCourse" resultType="cn.wisdsoft.util.EchartsUtils">
+        SELECT teacher_name                      seriesName,
+               GROUP_CONCAT(course_library_name) xAxisData,
+               GROUP_CONCAT(current_number)      seriesData
+        FROM elective_course
+        WHERE term_id = #{termId}
+          AND teacher_id = #{teacherId}
+        GROUP BY teacher_id
+    </select>
+</mapper>

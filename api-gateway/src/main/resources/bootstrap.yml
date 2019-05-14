@@ -1,0 +1,21 @@
+server:
+  port: 9002
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    config:
+      label: master
+      profile: dev
+      uri: http://localhost:8888/
+      discovery:
+        enabled: true
+        service-id: config-server
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
+

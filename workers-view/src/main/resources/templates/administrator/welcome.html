@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="/css/font.css">
+    <link rel="stylesheet" href="/css/xadmin.css">
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="x-body layui-anim layui-anim-up">
+    <blockquote class="layui-elem-quote">欢迎管理员：
+        <span class="x-red" id="teacherName"></span>！当前时间:2018-04-25 20:50:53
+    </blockquote>
+    <fieldset class="layui-elem-field">
+        <fieldset class="layui-elem-field">
+            <legend>开发团队</legend>
+            <div class="layui-field-box">
+                <table class="layui-table">
+                    <tbody>
+                    <tr>
+                        <th>版权所有</th>
+                        <td>软件学院-智软工作室出品
+                            <a href="http://www.xxx.com/" class='x-a' target="_blank">访问官网</a></td>
+                    </tr>
+                    <tr>
+                        <th>公司主页</th>
+                        <td>www.wisdsoft.com</td>
+                    </tr>
+                    <tr>
+                        <th>联系QQ</th>
+                        <td>953124935</td>
+                    </tr>
+                    <tr>
+                        <th>承接业务</th>
+                        <td>前端页面设计+后台管理系统</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+
+        <fieldset class="layui-elem-field">
+            <legend>开发团队</legend>
+            <div class="layui-field-box">
+                <table class="layui-table">
+                    <tbody>
+
+                    <tr>
+                        <th>系统简介</th>
+                        <td>随着高校招生规模的不断扩大，课程的不断细化，给高校学生选课带来很大的不便。而选课是高校教务系统不可或缺的一部分。为了解决这个问题，产生了高校学生选课系统。
+                            该系统以日常生活、学习的各个领域，各个环节中的计算机网络平台为基础，已高校学生、教师、管理员为目标用户，以高校的教务系统为依据，以应用和从而提高高校学生的选课效率和管理人员的工作效率
+                            ，提升高校的教育质量，移推动高校的进一步发展。
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+            <legend>关于系统</legend>
+            <div class="layui-field-box">
+                <table class="layui-table">
+                    <tbody>
+                    <tr>
+                        <th>当前版本</th>
+                        <td>v1.0.0</td>
+                    </tr>
+                    <tr>
+                        <th>开发作者</th>
+                        <td>智软工作室</td>
+                    </tr>
+                    <tr>
+                        <th>服务器环境</th>
+                        <td>Tomcat+Nginx</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </fieldset>
+
+    </fieldset>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        let teacherInfo =JSON.parse(sessionStorage.getItem("teacherInfo"));
+        $("#teacherName").text(teacherInfo.teaName)
+    });
+</script>
