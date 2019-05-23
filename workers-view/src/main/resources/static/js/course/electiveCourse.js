@@ -31,7 +31,7 @@ layui.use(['form', 'layer', 'table'], function () {
             });
         },
         elem: '#courseLibrary' //指定原始表格元素选择器（推荐id选择器）
-        , url: "http://localhost:9009/selectAllElectiveCourseInfo?collegeName=软件学院"
+        , url: "http://localhost:9009/selectAllElectiveCourseInfo?collegeName"
         , id: 'electiveCourseReload'
         , even: true    //隔行换色
         , cols: [[{
@@ -100,7 +100,7 @@ layui.use(['form', 'layer', 'table'], function () {
             url: 'http://localhost:9009/selectAllElectiveCourseByCourseOrTeaName'
             , where: { //设定异步数据接口的额外参数，任意设
                 CourseName: $('#CourseName').val(),
-                collegeName:"软件学院",
+                collegeName:teacherInfo.teaPower,
                 TeacherName:$('#teacherName').val()
             }
             , page: true

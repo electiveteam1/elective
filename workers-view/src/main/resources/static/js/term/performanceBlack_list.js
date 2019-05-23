@@ -8,7 +8,7 @@ layui.use(['form', 'layer', 'table'], function () {
     }
     table.render({
         elem: '#performanceBlack_list' //指定原始表格元素选择器（推荐id选择器）
-        , url: "http://localhost:9009/selectElectiveByStatus?collegeName=软件学院"
+        , url: "http://localhost:9009/selectElectiveByStatus?collegeName"
         , id: 'electiveCourseReload'
         , even: true    //隔行换色
         , cols: [[{

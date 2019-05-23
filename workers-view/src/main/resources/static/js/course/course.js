@@ -16,7 +16,7 @@ layui.use(['form', 'layer', 'table'], function () {
     }
     table.render({
         elem: '#courseLibrary' //指定原始表格元素选择器（推荐id选择器）
-        , url: "http://localhost:9009/selectAllCourse?collegeName=软件学院"
+        , url: "http://localhost:9009/selectAllCourse?collegeName"
         , id: 'courseReload'
         , even: true    //隔行换色
         , cols: [[{
@@ -61,7 +61,7 @@ layui.use(['form', 'layer', 'table'], function () {
         // console.log($('#CourseName').val());
         //执行重载
         table.reload('courseReload', {
-            url: 'http://localhost:9009/selectAllCourse?collegeName=软件学院'
+            url: 'http://localhost:9009/selectAllCourse?collegeName'
             , where: { //设定异步数据接口的额外参数，任意设
                 CourseName: $('#CourseName').val()
             }
