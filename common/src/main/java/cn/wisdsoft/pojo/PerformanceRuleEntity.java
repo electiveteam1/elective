@@ -13,13 +13,13 @@ public class PerformanceRuleEntity implements Serializable {
     //课程编号
     private Long electiveCourseId;
     //平时成绩
-    private Double peacetimePerformanceProportion;
+    private Integer peacetimePerformanceProportion;
     //期中成绩
-    private Double midTermPerformanceProportion;
+    private Integer midTermPerformanceProportion;
     //期末成绩
-    private Double finalPerformanceProportion;
+    private Integer finalPerformanceProportion;
     //技能考核
-    private Double skillAssessmentProportion;
+    private Integer skillAssessmentProportion;
     //备注
     private String remark;
 
@@ -41,38 +41,38 @@ public class PerformanceRuleEntity implements Serializable {
         return this;
     }
 
-    public Double getPeacetimePerformanceProportion() {
+    public Integer getPeacetimePerformanceProportion() {
         return peacetimePerformanceProportion;
     }
 
-    public PerformanceRuleEntity setPeacetimePerformanceProportion(Double peacetimePerformanceProportion) {
+    public PerformanceRuleEntity setPeacetimePerformanceProportion(Integer peacetimePerformanceProportion) {
         this.peacetimePerformanceProportion = peacetimePerformanceProportion;
         return this;
     }
 
-    public Double getMidTermPerformanceProportion() {
+    public Integer getMidTermPerformanceProportion() {
         return midTermPerformanceProportion;
     }
 
-    public PerformanceRuleEntity setMidTermPerformanceProportion(Double midTermPerformanceProportion) {
+    public PerformanceRuleEntity setMidTermPerformanceProportion(Integer midTermPerformanceProportion) {
         this.midTermPerformanceProportion = midTermPerformanceProportion;
         return this;
     }
 
-    public Double getFinalPerformanceProportion() {
+    public Integer getFinalPerformanceProportion() {
         return finalPerformanceProportion;
     }
 
-    public PerformanceRuleEntity setFinalPerformanceProportion(Double finalPerformanceProportion) {
+    public PerformanceRuleEntity setFinalPerformanceProportion(Integer finalPerformanceProportion) {
         this.finalPerformanceProportion = finalPerformanceProportion;
         return this;
     }
 
-    public Double getSkillAssessmentProportion() {
+    public Integer getSkillAssessmentProportion() {
         return skillAssessmentProportion;
     }
 
-    public PerformanceRuleEntity setSkillAssessmentProportion(Double skillAssessmentProportion) {
+    public PerformanceRuleEntity setSkillAssessmentProportion(Integer skillAssessmentProportion) {
         this.skillAssessmentProportion = skillAssessmentProportion;
         return this;
     }

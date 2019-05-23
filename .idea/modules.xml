@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/administrator/administrator.iml" filepath="$PROJECT_DIR$/administrator/administrator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ddms-interface/ddms-interface.iml" filepath="$PROJECT_DIR$/ddms-interface/ddms-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/elective.iml" filepath="$PROJECT_DIR$/.idea/elective.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/student/student.iml" filepath="$PROJECT_DIR$/student/student.iml" />
+      <module fileurl="file://$PROJECT_DIR$/student-view/student-view.iml" filepath="$PROJECT_DIR$/student-view/student-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/teacher/teacher.iml" filepath="$PROJECT_DIR$/teacher/teacher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/workers-view/workers-view.iml" filepath="$PROJECT_DIR$/workers-view/workers-view.iml" />
+    </modules>
+  </component>
+</project>

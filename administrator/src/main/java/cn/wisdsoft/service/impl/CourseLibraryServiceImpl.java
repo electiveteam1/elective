@@ -24,13 +24,10 @@ import java.util.List;
 @Service
 public class CourseLibraryServiceImpl implements CourseLibraryService {
 
-    private final CourseLibraryMapper courseLibraryMapper;
-    private final PerformanceRuleMapper performanceRuleMapper;
-
-    public CourseLibraryServiceImpl(CourseLibraryMapper courseLibraryMapper, PerformanceRuleMapper performanceRuleMapper) {
-        this.courseLibraryMapper = courseLibraryMapper;
-        this.performanceRuleMapper = performanceRuleMapper;
-    }
+    @Autowired
+    private CourseLibraryMapper courseLibraryMapper;
+    @Autowired
+    private PerformanceRuleMapper performanceRuleMapper;
 
     /**
      * 根据管理员身份，查询所有课程
@@ -57,28 +54,28 @@ public class CourseLibraryServiceImpl implements CourseLibraryService {
     @Transactional
     @Override
     public ElectiveResult insertCourseLibrary(CourseLibraryVo courseLibraryVo) {
-        double a = 0, b = 0, c = 0, d = 0;
+        int a = 0, b = 0, c = 0, d = 0;
         //期末成绩
         String finalPerformanceProportion = courseLibraryVo.getFinalPerformanceProportion();
-        if (!"".equals(finalPerformanceProportion)) {
-            a = Double.parseDouble(finalPerformanceProportion.substring(0, finalPerformanceProportion.indexOf("%")));
+        if (!finalPerformanceProportion.equals("")) {
+            a = Integer.parseInt(finalPerformanceProportion.substring(0, finalPerformanceProportion.indexOf("%")));
         }
         //期中成绩
         String midTermPerformanceProportion = courseLibraryVo.getMidTermPerformanceProportion();
-        if (!"".equals(midTermPerformanceProportion)) {
-            b = Double.parseDouble(midTermPerformanceProportion.substring(0, midTermPerformanceProportion.indexOf("%")));
+        if (!midTermPerformanceProportion.equals("")) {
+            b = Integer.parseInt(midTermPerformanceProportion.substring(0, midTermPerformanceProportion.indexOf("%")));
         }
         //平时成绩
         String peacetimPerformanceProportion = courseLibraryVo.getPeacetimePerformanceProportion();
-        if (!"".equals(peacetimPerformanceProportion)) {
-            c = Double.parseDouble(peacetimPerformanceProportion.substring(0, peacetimPerformanceProportion.indexOf("%")));
+        if (!peacetimPerformanceProportion.equals("")) {
+            c = Integer.parseInt(peacetimPerformanceProportion.substring(0, peacetimPerformanceProportion.indexOf("%")));
         }
         //技能考核
         String skillAssessmentProportion = courseLibraryVo.getSkillAssessmentProportion();
-        if (!"".equals(skillAssessmentProportion)) {
-            d = Double.parseDouble(skillAssessmentProportion.substring(0, skillAssessmentProportion.indexOf("%")));
+        if (!skillAssessmentProportion.equals("")) {
+            d = Integer.parseInt(skillAssessmentProportion.substring(0, skillAssessmentProportion.indexOf("%")));
         }
-        double allProportion = a + b + c + d;
+        int allProportion = a + b + c + d;
         if (allProportion != 100) {
             return ElectiveResult.build(420, "成绩规则总分为100分哦");
         }
@@ -91,7 +88,7 @@ public class CourseLibraryServiceImpl implements CourseLibraryService {
         }
         courseLibraryVo.setPerformanceRuleId(performanceRuleEntity.getPerformanceRuleId());
         //如果课程组为空，则将课程名称赋值为课组组
-        if ("".equals(courseLibraryVo.getCourseGroupName())) {
+        if (courseLibraryVo.getCourseGroupName().equals("")) {
             courseLibraryVo.setCourseGroupName(courseLibraryVo.getCourseLibraryName());
         }
         //添加课程

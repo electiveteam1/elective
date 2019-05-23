@@ -128,7 +128,11 @@
         $ = layui.jquery;
         var form = layui.form
             , layer = layui.layer;
-
+        let teacherInfo =JSON.parse(sessionStorage.getItem("teacherInfo"));
+        if(teacherInfo==null){
+            location.href = '/toLogin';
+            return false;
+        }
         $(function () {
             $.ajax({
                 url: 'http://localhost:9009/selectAllCourseGroup',
@@ -166,7 +170,8 @@
                     peacetimePerformanceProportion:list.peacetimePerformanceProportion,
                     midTermPerformanceProportion:list.midTermPerformanceProportion,
                     skillAssessmentProportion:list.skillAssessmentProportion,
-                    finalPerformanceProportion:list.finalPerformanceProportion
+                    finalPerformanceProportion:list.finalPerformanceProportion,
+                    collegeName:teacherInfo.teaPower
                 },
                 success: function (res) {
                     if (res.status == 200) {
